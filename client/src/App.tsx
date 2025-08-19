@@ -8,6 +8,7 @@ import Landing from "@/pages/landing";
 import Dashboard from "@/pages/dashboard";
 import MLS from "@/pages/mls";
 import Portfolio from "@/pages/portfolio";
+import Leaderboard from "@/pages/leaderboard";
 
 function Router() {
   return (
@@ -16,6 +17,7 @@ function Router() {
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/mls" component={MLS} />
       <Route path="/portfolio" component={Portfolio} />
+      <Route path="/leaderboard" component={Leaderboard} />
       <Route component={NotFound} />
     </Switch>
   );

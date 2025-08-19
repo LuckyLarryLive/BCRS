@@ -156,8 +156,13 @@ export class MemStorage implements IStorage {
   async createUser(insertUser: InsertUser): Promise<User> {
     const id = randomUUID();
     const user: User = { 
-      ...insertUser, 
       id,
+      walletAddress: insertUser.walletAddress || null,
+      briksBalance: insertUser.briksBalance || "15000",
+      hasCompletedTutorial: insertUser.hasCompletedTutorial || false,
+      username: insertUser.username || null,
+      netWorth: insertUser.netWorth || "0",
+      rank: insertUser.rank || "999",
       createdAt: new Date()
     };
     this.users.set(id, user);
@@ -190,8 +195,25 @@ export class MemStorage implements IStorage {
   async createProperty(insertProperty: InsertProperty): Promise<Property> {
     const id = randomUUID();
     const property: Property = { 
-      ...insertProperty, 
       id,
+      name: insertProperty.name,
+      price: insertProperty.price,
+      briksPrice: insertProperty.briksPrice,
+      location: insertProperty.location,
+      propertyType: insertProperty.propertyType,
+      income: insertProperty.income,
+      demand: insertProperty.demand,
+      rarity: insertProperty.rarity,
+      condition: insertProperty.condition || "100",
+      imageUrl: insertProperty.imageUrl || null,
+      features: insertProperty.features || null,
+      bedrooms: insertProperty.bedrooms || null,
+      bathrooms: insertProperty.bathrooms || null,
+      sqft: insertProperty.sqft || null,
+      yearBuilt: insertProperty.yearBuilt || null,
+      monthlyIncome: insertProperty.monthlyIncome || null,
+      annualROI: insertProperty.annualROI || null,
+      ownerId: insertProperty.ownerId || null,
       listingDate: new Date()
     };
     this.properties.set(id, property);
@@ -216,8 +238,11 @@ export class MemStorage implements IStorage {
   async createTransaction(insertTransaction: InsertTransaction): Promise<Transaction> {
     const id = randomUUID();
     const transaction: Transaction = { 
-      ...insertTransaction, 
       id,
+      userId: insertTransaction.userId,
+      propertyId: insertTransaction.propertyId || null,
+      type: insertTransaction.type,
+      amount: insertTransaction.amount,
       createdAt: new Date()
     };
     this.transactions.set(id, transaction);

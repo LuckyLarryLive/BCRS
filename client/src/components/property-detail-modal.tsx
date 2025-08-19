@@ -77,7 +77,7 @@ export default function PropertyDetailModal({ property, onClose }: PropertyDetai
       <DialogContent id="property-detail-modal" className="max-w-4xl max-h-[90vh] overflow-auto p-0">
         <div className="relative">
           <img 
-            src={property.imageUrl} 
+            src={property.imageUrl || "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=400&fit=crop"} 
             alt={property.name}
             className="w-full h-64 object-cover" 
           />

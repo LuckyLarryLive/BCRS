@@ -19,6 +19,9 @@ export default function Landing() {
       return response.json();
     },
     onSuccess: (user) => {
+      // Store user ID for future API calls
+      localStorage.setItem('currentUserId', user.id);
+      
       toast({
         title: "Wallet Connected!",
         description: `Welcome to Brick City, ${user.username}!`,

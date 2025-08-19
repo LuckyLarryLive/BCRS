@@ -9,12 +9,12 @@ import type { Property } from "@shared/schema";
 export default function Portfolio() {
   const userId = localStorage.getItem('currentUserId');
 
-  const { data: ownedProperties = [], isLoading } = useQuery({
+  const { data: ownedProperties = [], isLoading } = useQuery<Property[]>({
     queryKey: ['/api/users', userId, 'properties'],
     enabled: !!userId,
   });
 
-  const { data: transactions = [] } = useQuery({
+  const { data: transactions = [] } = useQuery<any[]>({
     queryKey: ['/api/users', userId, 'transactions'],
     enabled: !!userId,
   });

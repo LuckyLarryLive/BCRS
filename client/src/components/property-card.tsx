@@ -57,7 +57,7 @@ export default function PropertyCard({
     >
       <div className="relative">
         <img 
-          src={property.imageUrl} 
+          src={property.imageUrl || "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=400&fit=crop"} 
           alt={property.name}
           className="w-full h-48 object-cover"
         />

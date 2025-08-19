@@ -1,16 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
 import { Card } from "@/components/ui/card";
 import { UserIcon, CoinsIcon } from "lucide-react";
+import type { Property } from "@shared/schema";
 
 export default function PlayerProfileCard() {
   const userId = localStorage.getItem('currentUserId');
   
-  const { data: user } = useQuery({
+  const { data: user } = useQuery<any>({
     queryKey: ['/api/users', userId],
     enabled: !!userId,
   });
 
-  const { data: ownedProperties = [] } = useQuery({
+  const { data: ownedProperties = [] } = useQuery<Property[]>({
     queryKey: ['/api/users', userId, 'properties'],
     enabled: !!userId,
   });

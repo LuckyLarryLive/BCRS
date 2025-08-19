@@ -17,7 +17,7 @@ export default function MLS() {
     propertyType: "all",
   });
 
-  const { data: properties = [], isLoading } = useQuery({
+  const { data: properties = [], isLoading } = useQuery<Property[]>({
     queryKey: ['/api/properties', { available: true }],
   });
 
