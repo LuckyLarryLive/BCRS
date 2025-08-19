@@ -1,0 +1,94 @@
+You are an expert full-stack developer specializing in creating immersive and polished Web3 simulation games. Your task is to build the frontend foundation for a new virtual real estate simulator game called "Brick City Realty Sim"
+
+Project Goal:
+Create a clean, engaging, and intuitive user interface that feels like a professional simulator (think SimCity or a stock trading platform) but with the charming and iconic aesthetics of the classic Monopoly board game. The initial build will feature a guided, multi-step tutorial for new users, personified by a "Cartoon Realtor" guide, to create a polished and user-friendly demo experience. The entire user flow should be designed for a seamless future integration of a Web3 wallet and the purchase of an in-game currency called $BRIKS.
+
+Tech Stack:
+Framework: Next.js with TypeScript
+Styling: Tailwind CSS for a utility-first approach.
+Database & Auth: Supabase. Set up both database tables and Supabase Auth.
+Deployment: Vercel.
+Web3 Integration: Use the RainbowKit library for wallet connectivity. The login flow should be fully functional.
+Tutorial System: Install and configure the react-joyride library to create an interactive product tour.
+Version Control: Initialize a Git repository and provide instructions for pushing to GitHub.
+Aesthetic & "Look and Feel":
+Theme: "Monopoly meets Bloomberg Terminal."
+Color Palette: Use a base of classic Monopoly colors: deep green (#0B6623) for primary backgrounds and accents, cream/off-white (#F7F5E6) for content cards and modals, and a bold red (#C41E3A) for critical call-to-action buttons and alerts. Use gold/yellow (#FFD700) for highlights, premium features, and the "Get $BRIKS" button.
+Typography: Use a clean, modern, sans-serif font like Inter or Poppins for all UI text and numbers. For main headings and logos, use a classic, bold, serif font reminiscent of Monopoly's property cards, like Playfair Display or Lora.
+Iconography: Use a mix of modern, clean icons (from Feather Icons or Heroicons) for the UI, but incorporate classic Monopoly-style icons (top hat, car, thimble) as visual flair for player avatars or location markers.
+Layout: A clean, grid-based layout. The interface should feel data-rich but not cluttered. Use cards, modals, and slide-out panels to manage information flow.
+
+Page & Component Breakdown (The User Flow):
+
+1. The Landing/Login Page (/)
+Look: A visually striking page with the "Mogul's Metropolis" logo. The background should be a stylized, slightly blurred map of the game world.
+Functionality:
+A single, prominent "Play Now" button. Clicking it triggers the RainbowKit modal for wallet login.
+Upon successful connection, Supabase Auth will handle the user session, creating a new user in the Supabase users table if they don't exist.
+After login, the user is redirected to the main dashboard. For a brand new user (where has_completed_tutorial is false), the redirect should be /dashboard?tutorial=true.
+
+2. The Main Dashboard (/dashboard)
+Layout: A three-column layout.
+Left Column (Player Profile & Navigation): A "Player Card" component (id="player-profile-card") showing a Monopoly-style avatar, username, $BRIKS balance (id="briks-balance", use placeholder B 15,000), and Net Worth. Below it, a navigation menu with links: "Dashboard," "MLS" (id="nav-link-mls"), "My Portfolio," and "Leaderboard."
+Center Column (Main Content): A "Dashboard Summary" view with key stats and a game news feed.
+Right Column (World Map & Alerts): A static map component and an alerts panel.
+Header: A main header should be present on all pages, containing a gold-colored "Get $BRIKS" button (id="get-briks-button").
+
+3. The MLS (Multiple Listing Service) Page (/mls)
+Look: A data-rich view resembling Zillow.
+Layout: Filters at the top (id="mls-filters"), followed by a scrollable grid of "Property Cards" (class="property-card"). Each card should mimic a Monopoly property card's style.
+Functionality (Mocked): Clicking a card opens a detailed view with a "Buy Property" button, which will show a confirmation modal.
+
+4. My Portfolio Page (/portfolio)
+Look: A clean overview of the player's "owned" properties (use mock data).
+Functionality (Mocked): Each property card has "Manage" and "Sell" buttons that open placeholder modals.
+
+5. The "Get $BRIKS" Modal
+Trigger: Clicking the "Get $BRIKS" button in the header.
+Functionality: Opens a full-screen modal (id="get-briks-modal") with three clear tabs at the top: "Credit Card," "Crypto Swap," and "DEX." These tabs will contain placeholder UI to establish the flow for future integration of payment providers.
+
+
+Supabase Schema (Initial Tables):
+
+users:
+id (uuid, references auth.users)
+wallet_address (text, unique)
+briks_balance (numeric, default: 15000)
+has_completed_tutorial (boolean, default: false)
+created_at (timestamp)
+
+properties:
+id (uuid, primary key)
+name (text)
+price (numeric)
+last_fixed (date)
+last_updated (date)
+listing_date (date)
+location_cat (numeric)
+location (text)
+price (numeric)
+income_cat (numeric)
+income (numeric)
+turnover_cat (numeric)
+turnover (2-decimal place float)
+demand_cat (numeric)
+demand (numeric)
+financed (boolean yes or no)
+mortgage_remaining (numeric)
+school_cat (numeric)
+school (text)
+amenity_cat (numeric)
+amenity (text)
+tax_cat (numeric)
+tax (2-decimal place float)
+dues_cat (numeric)
+dues (numeric)
+insurance_cat (numeric)
+insurance (numeric)
+rarity_cat  (numeric)
+rarity (text)
+condition (numeric, default: 100)
+owner_id (uuid, nullable, references users.id)
+
+Final Instructions:
+Please generate the complete code structure for this Next.js application. Set up the Supabase client and schema as described. Ensure the RainbowKit wallet login is functional and interacts with the users table. Implement the react-joyride library to create the multi-step tutorial as described, which triggers for new users and is replayable. Use placeholder mock data where necessary to populate the UI. The code should be clean, well-commented, and ready to be deployed to Vercel. Conclude with a detailed README.md file that explains how to set up the environment variables and run the project locally.
