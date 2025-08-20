@@ -15,6 +15,10 @@ build/
 .env.test.local
 .env.production.local
 
+# Supabase credentials and configuration
+.env.supabase
+supabase-config.json
+
 # IDE and editor files
 .vscode/
 .idea/
@@ -60,6 +64,7 @@ jspm_packages/
 # Replit specific
 .replit
 replit.nix
+.local/
 
 # Database
 *.sqlite
